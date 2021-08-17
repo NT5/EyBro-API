@@ -1,0 +1,20 @@
+{
+    "name": "nt5/eybro-api",
+    "description": "Interface para App",
+    "type": "project",
+    "require": {
+        "php": "7.*"
+    },
+    "license": "Apache",
+    "autoload": {
+        "psr-4": {
+            "NT5\\EybroApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "NT5",
+            "email": "hendelporras@hotmail.com"
+        }
+    ]
+}
