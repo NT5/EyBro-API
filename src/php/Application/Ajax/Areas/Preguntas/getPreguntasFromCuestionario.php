@@ -14,21 +14,14 @@ class getPreguntasFromCuestionario extends Area {
      */
     private $cuestionario_id = 0;
 
-    /**
-     *
-     * @var Preguntas
-     */
-    private $Control;
-
     public function CheckPost() {
         $this->cuestionario_id = ($this->getPostInt('cuestionario_id') ?: 0);
     }
 
     public function initVars() {
-        $control = $this->Control;
         $cuestionario_id = $this->cuestionario_id;
 
-        $preguntas = $control->getPreguntasFromCuestionario($cuestionario_id);
+        $preguntas = Preguntas::getPreguntasFromCuestionario($cuestionario_id);
         $this->setVars([
             'data' => array_map(
                     function (PreguntaEntry $arr) {
@@ -38,7 +31,7 @@ class getPreguntasFromCuestionario extends Area {
     }
 
     public function setUp() {
-        $this->Control = new Preguntas();
+        
     }
 
 }

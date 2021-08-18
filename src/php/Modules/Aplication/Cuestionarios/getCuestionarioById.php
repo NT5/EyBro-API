@@ -13,7 +13,7 @@ trait getCuestionarioById {
      * @param int $cuestionario_id
      * @return CuestionarioEntry
      */
-    public function getCuestionarioById(int $cuestionario_id): CuestionarioEntry {
+    public static function getCuestionarioById(int $cuestionario_id): CuestionarioEntry {
         $db = Database::instance();
 
         $table_name = "cuestionarios";
