@@ -11,6 +11,7 @@ RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
 RewriteRule ^ajax/(\w+)*$ ./ajax.php?p=$1
+RewriteRule ^ajax/cuestionarios/(\w+)*$ ./ajax.php?p=cuestionarios&cuestionarios=$1
 
 <Files .htaccess>
     Order allow,deny
