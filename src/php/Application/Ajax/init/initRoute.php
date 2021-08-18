@@ -7,7 +7,6 @@ use Bulk\Application\Ajax\Areas;
 
 trait initRoute {
 
-
     /**
      * 
      * @return AjaxRoute
@@ -16,16 +15,22 @@ trait initRoute {
 
     private function initRoute() {
         $Route = new AjaxRoute('p', Areas\Invalid::class);
-        
+
         $Cuestionarios = new AjaxRoute('cuestionarios', Areas\Cuestionarios::class);
-        
+
         $Cuestionarios
                 ->addRoute(new AjaxRoute('getCuestionarioById', Areas\Cuestionarios\getCuestionarioById::class));
+
+        $Preguntas = new AjaxRoute('preguntas', Areas\Preguntas::class);
+        
+        $Preguntas
+                ->addRoute(new AjaxRoute('getPreguntasFromCuestionario', Areas\Preguntas\getPreguntasFromCuestionario::class));
 
         $Route
                 ->addRoute(new AjaxRoute('invalid', Areas\Invalid::class))
                 ->addRoute(new AjaxRoute('info', Areas\Info::class))
-                ->addRoute($Cuestionarios);
+                ->addRoute($Cuestionarios)
+                ->addRoute($Preguntas);
 
         $this->Route = $Route->init();
     }
