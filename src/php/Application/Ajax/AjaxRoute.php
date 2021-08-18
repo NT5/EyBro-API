@@ -2,12 +2,11 @@
 
 namespace Bulk\Application\Ajax;
 
-use Bulk\Modules\Extended;
-use Bulk\Modules\Extended\ExtendedExtended;
 use Bulk\Application\Ajax\Area;
 use Bulk\Application\Ajax\Areas;
+use Bulk\Modules\Core\Logger;
 
-class AjaxRoute extends ExtendedExtended {
+class AjaxRoute {
 
     /**
      *
@@ -43,11 +42,8 @@ class AjaxRoute extends ExtendedExtended {
      * 
      * @param string $Url
      * @param string $AreaClass
-     * @param Extended $Extended
      */
-    public function __construct($Url = 'p', $AreaClass = Areas\Info::class, Extended $Extended = NULL) {
-        parent::__construct($Extended);
-
+    public function __construct(string $Url = 'p', string $AreaClass = Areas\Info::class) {
         $this->Url = $Url;
         $this->AreaClass = $AreaClass;
     }
@@ -58,10 +54,8 @@ class AjaxRoute extends ExtendedExtended {
      * @return $this
      */
     public function addRoute(AjaxRoute $Route) {
-        $b = $this->Extended()->Basics();
-
         $this->Route[$Route->getUrl()] = $Route;
-        $b->setLog("Nuevo Route añadido URL: %s | AreaClass: %s", $Route->getUrl(), $Route->getAreaClass());
+        Logger::setLog("Nuevo Route añadido URL: %s | AreaClass: %s", $Route->getUrl(), $Route->getAreaClass());
         return $this;
     }
 
@@ -112,8 +106,7 @@ class AjaxRoute extends ExtendedExtended {
      * @return $this
      */
     public function init($SubRoute = TRUE) {
-        $b = $this->Extended()->Basics();
-        $b->setLog("[%s] Init Ajax-Route...", $this->getAreaClass());
+        Logger::setLog("[%s] Init Ajax-Route...", $this->getAreaClass());
 
         $url = filter_input($this->InputMethod, $this->getUrl());
         $Route = $this->getRoutes();
@@ -123,15 +116,15 @@ class AjaxRoute extends ExtendedExtended {
         } else {
 
             if (!self::getArea()) {
-                $b->setLog("No areaclass found, create new");
+                Logger::setLog("No areaclass found, create new");
             } else {
-                $b->setLog("Areaclass found, overwrite...");
+                Logger::setLog("Areaclass found, overwrite...");
             }
 
             $AreaClass = $this->getAreaClass();
-            self::$Area = new $AreaClass($this->Extended());
+            self::$Area = new $AreaClass();
 
-            $b->setLog("Ajax-Route init! working area: %s", $this->getAreaClass());
+            Logger::setLog("Ajax-Route init! working area: %s", $this->getAreaClass());
         }
 
         return $this;

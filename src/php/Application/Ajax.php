@@ -3,9 +3,8 @@
 namespace Bulk\Application;
 
 use Bulk\Application\Ajax;
-use Bulk\Application\Web;
-use Bulk\Modules\Basics;
-use Bulk\Modules\Extended;
+use Bulk\Application\Initialization;
+use Bulk\Application\Finalization;
 use Bulk\Application\Ajax\AjaxRoute;
 
 class Ajax {
@@ -16,23 +15,10 @@ class Ajax {
      */
     private $Route;
 
-    /**
-     *
-     * @var Basics
-     */
-    private $Basics;
-
-    /**
-     *
-     * @var Extended
-     */
-    private $Extended;
-
-    use Web\init\initBasics,
-        Web\init\initExtended,
+    use Initialization\initDatabase,
+        Finalization\disposeDatabase,
         Ajax\init\initRoute,
-        Ajax\init\initDisplay,
-        Web\dispose\disposeExtended;
+        Ajax\init\initDisplay;
 
     private $ExecutionTime = 0;
 
@@ -42,11 +28,11 @@ class Ajax {
      */
     public function ajax() {
         $this->ExecutionTime = microtime(true);
-        $this->initBasics();
-        $this->initExtended();
+        $this->initDatabaseConfig();
+        $this->initDatabaseInstance();
         $this->initRoute();
-        $this->disposeExtended();
         $this->initDisplay();
+        $this->disconnectDatabase();
         return $this;
     }
 
@@ -56,22 +42,6 @@ class Ajax {
      */
     public function getRoute() {
         return $this->Route;
-    }
-
-    /**
-     * 
-     * @return Basics
-     */
-    public function getBasics() {
-        return $this->Basics;
-    }
-
-    /**
-     * 
-     * @return Extended
-     */
-    public function getExtended() {
-        return $this->Extended;
     }
 
 }

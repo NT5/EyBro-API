@@ -3,7 +3,7 @@
     "description": "Interface para App",
     "type": "project",
     "require": {
-        "php": ">=7.*"
+        "php": ">=7"
     },
     "license": "Apache-2.0",
     "autoload": {

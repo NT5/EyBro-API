@@ -3,16 +3,10 @@
 namespace Bulk\Application\Ajax\init;
 
 use Bulk\Application\Ajax\AjaxRoute;
-use Bulk\Modules\Extended;
 use Bulk\Application\Ajax\Areas;
 
 trait initRoute {
 
-    /**
-     * 
-     * @return Extended
-     */
-    public abstract function getExtended();
 
     /**
      * 
@@ -21,13 +15,11 @@ trait initRoute {
     public abstract function getRoute();
 
     private function initRoute() {
-        $Route = new AjaxRoute('p', Areas\Invalid::class, $this->getExtended());
-        $e = $Route->Extended();
+        $Route = new AjaxRoute('p', Areas\Invalid::class);
 
         $Route
-                ->addRoute(new AjaxRoute('invalid', Areas\Invalid::class, $e))
-                ->addRoute(new AjaxRoute('info', Areas\Info::class, $e))
-                ->addRoute(new AjaxRoute('userlist', Areas\UserList::class, $e));
+                ->addRoute(new AjaxRoute('invalid', Areas\Invalid::class))
+                ->addRoute(new AjaxRoute('info', Areas\Info::class));
 
         $this->Route = $Route->init();
     }

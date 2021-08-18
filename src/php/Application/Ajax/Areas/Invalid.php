@@ -2,18 +2,10 @@
 
 namespace Bulk\Application\Ajax\Areas;
 
-use Bulk\Modules\Extended;
 use Bulk\Application\Ajax\Area;
+use Bulk\Modules\Core\Logger;
 
 class Invalid extends Area {
-
-    /**
-     * 
-     * @param Extended $Extended
-     */
-    public function __construct(Extended $Extended = NULL) {
-        parent::__construct($Extended);
-    }
 
     public function initVars() {
         $this->setVars([

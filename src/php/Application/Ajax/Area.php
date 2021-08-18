@@ -2,11 +2,9 @@
 
 namespace Bulk\Application\Ajax;
 
-use Bulk\Modules\Extended;
-use Bulk\Modules\Extended\ExtendedExtended;
 use Bulk\Modules\Util\Functions;
 
-abstract class Area extends ExtendedExtended {
+abstract class Area {
 
     /**
      *
@@ -14,13 +12,7 @@ abstract class Area extends ExtendedExtended {
      */
     private $Vars = [];
 
-    /**
-     * 
-     * @param Extended $Extended
-     */
-    public function __construct(Extended $Extended = NULL) {
-        parent::__construct($Extended);
-
+    public function __construct() {
         $this->prepareArea();
     }
 

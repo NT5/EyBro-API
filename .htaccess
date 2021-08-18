@@ -7,13 +7,10 @@ RedirectMatch 403 ^/tests/.*$
 
 RewriteEngine On
 
-RewriteRule ^libs(/.*)?$ ./node_modules/$1
-
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
 RewriteRule ^ajax/(\w+)*$ ./ajax.php?p=$1
-RewriteRule ^(\w+)*$ ./index.php?p=$1
 
 <Files .htaccess>
     Order allow,deny
