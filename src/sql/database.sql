@@ -3,6 +3,8 @@
 CREATE TABLE IF NOT EXISTS `cuestionarios` (
     `id_cuestionario` BIGINT NOT NULL AUTO_INCREMENT,
     `descripcion` TEXT NOT NULL,
+    `mensaje_bienvenida` TEXT NOT NULL,
+    `mensaje_despedida` TEXT NOT NULL,
     `create_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_cuestionario`)
 ) ENGINE=InnoDB;
@@ -30,9 +32,20 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
     `id_pregunta` BIGINT NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `mensajes_preguntas` (
+    `id_mensaje` BIGINT NOT NULL AUTO_INCREMENT,
+    `id_cuestionario` BIGINT NOT NULL,
+    `id_pregunta` BIGINT NOT NULL,
+    `mensaje` TEXT NOT NULL,
+    PRIMARY KEY (`id_mensaje`),
+    CONSTRAINT FOREIGN KEY (`id_cuestionario`) REFERENCES `cuestionarios` (`id_cuestionario`) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (`id_pregunta`) REFERENCES `preguntas` (`id_pregunta`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 -- Datos de preguntas
 
-INSERT INTO `cuestionarios` (`id_cuestionario`, `descripcion`) VALUES (1, 'EyBro!');
+INSERT INTO `cuestionarios` (`id_cuestionario`, `descripcion`, `mensaje_bienvenida`, `mensaje_despedida`) VALUES 
+(1, 'EyBro!', 'Hablemos un poco entre vos y yo... Me gustaría respondieras a la siguiente entrevista para poder comprender con mucha sabiduría y empatía lo que ahora te está pasando.', 'Mi Bro ahora es momento que tu y yo busquemos ayuda ante lo que estas viviendo, para eso voy a sugerirte los siguientes correos electrónicos y contactos WhatsApp a los cuales puedes enviar la información antes brindada y desde esta app podrás ser vos el propio protagonista de tu tranquilidad. Recuerda que esta información es confidencial y solo la persona a la cual decidas enviar el resultado de esta entrevista podrá saber y te brindará ayuda a lo inmediato sin que sufras algún daño.');
 
 INSERT INTO `preguntas` (`id_cuestionario`, `id_pregunta`, `pregunta_texto`) VALUES
 (1, 1, 'Según tu opinión personal ¿Te consideras bonito/a?'),
@@ -52,6 +65,11 @@ INSERT INTO `preguntas` (`id_cuestionario`, `id_pregunta`, `pregunta_texto`) VAL
 (1, 15, '¿Hay algún maestro que te dice palabras o frases que te hacen sentir avergonzado/a?'),
 (1, 16, '¿Qué has hecho para disminuir tu intranquilidad ante ese comportamiento?'),
 (1, 17, '¿Consideras que es correcto el comportamiento de tu maestro?');
+
+INSERT INTO `mensajes_preguntas` (`id_cuestionario`, `id_pregunta`, `mensaje`) VALUES
+(1, 1, 'Bueno llegó el momento que comiences a contarme que te esta pasando, para no lastimar tus emociones te iré haciendo unas sencillas preguntas con las cuales vos te iras identificando, estas preguntas ya tienen opciones predeterminadas en las que solo iras marcando la que consideres puedes y quieres responder. ¿De acuerdo Bro? '),
+(1, 7, 'Muchas gracias Bro por compartir conmigo tu experiencia anterior, ahora es momento que hablemos como te va en la escuela, ¿Quieres que hablemos de eso? Para que se nos haga mas divertida esta bonita conversación yo te preguntaré y tu elegirás la opción con la cual te sientas a gusto.'),
+(1, 13, '¡Muy bien! Cuanta alegría siento que compartas parte de tus cosas y experiencias personales por este medio, pero sigamos conversando para que puedas sentirte mas liberado de todo eso que te esta mortificando o que quizá necesitas resolver y hablar. Por último, quiero que me hables un poco de cómo te están tratando los maestros en tu salón de clase o centro de estudio. Si consideras que deseas responder hazlo, si no estas en tu total libertad de omitir este blog de preguntas.');
 
 INSERT INTO `posibles_respuestas` (`id_pregunta`, `respuesta_texto`) VALUES
 (1, 'Si'),

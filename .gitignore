@@ -1,4 +1,12 @@
 # PHP Composer
 /vendor/
 composer.lock
+
+# Netbeans
 /nbproject/private/
+
+# VSCode
+.vscode/
+
+# Config
+config.ini

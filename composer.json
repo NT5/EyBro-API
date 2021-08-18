@@ -3,18 +3,20 @@
     "description": "Interface para App",
     "type": "project",
     "require": {
-        "php": "7.*"
+        "php": ">=7.*"
     },
-    "license": "Apache",
+    "license": "Apache-2.0",
     "autoload": {
         "psr-4": {
-            "NT5\\EybroApi\\": "src/"
+            "Bulk\\": "src/php"
         }
     },
     "authors": [
         {
             "name": "NT5",
-            "email": "hendelporras@hotmail.com"
+            "email": "hendelporras@hotmail.com",
+            "homepage": "https://nt5.pw",
+            "role": "Main Developer"
         }
     ]
 }
