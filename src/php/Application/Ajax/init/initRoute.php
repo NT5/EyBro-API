@@ -24,7 +24,8 @@ trait initRoute {
         $Preguntas = new AjaxRoute('preguntas', Areas\Preguntas::class);
         
         $Preguntas
-                ->addRoute(new AjaxRoute('getPreguntasFromCuestionario', Areas\Preguntas\getPreguntasFromCuestionario::class));
+                ->addRoute(new AjaxRoute('getPreguntasFromCuestionario', Areas\Preguntas\getPreguntasFromCuestionario::class))
+                ->addRoute(new AjaxRoute('getPreguntaFromId', Areas\Preguntas\getPreguntaFromId::class));
 
         $Route
                 ->addRoute(new AjaxRoute('invalid', Areas\Invalid::class))

@@ -7,7 +7,7 @@ use Bulk\Application\Initialization;
 use Bulk\Application\Finalization;
 use Bulk\Application\Ajax\AjaxRoute;
 
-class Ajax {
+final class Ajax {
 
     /**
      *

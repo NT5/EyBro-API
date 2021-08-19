@@ -2,6 +2,8 @@
 
 namespace Bulk\Modules\Aplication\Preguntas;
 
+use Bulk\Modules\Aplication\Preguntas\PosibleRespuestaEntry;
+
 class PreguntaEntry {
 
     /**
@@ -27,6 +29,12 @@ class PreguntaEntry {
      * @var int
      */
     private $create_at = 0;
+
+    /**
+     *
+     * @var PosibleRespuestaEntry[]
+     */
+    private $posibles_respuestas = [];
 
     /**
      * 
@@ -60,12 +68,33 @@ class PreguntaEntry {
         return $this->create_at;
     }
 
+    /**
+     * 
+     * @return PosibleRespuestaEntry[]
+     */
+    public function getPosibles_respuestas(): array {
+        return $this->posibles_respuestas;
+    }
+
+    /**
+     * 
+     * @param array $posibles_respuestas
+     * @return $this
+     */
+    public function setPosibles_respuestas(array $posibles_respuestas) {
+        $this->posibles_respuestas = $posibles_respuestas;
+        return $this;
+    }
+
     public function Json(): array {
         $structure = [
             "id_cuestionario" => $this->getId_cuestionario(),
             "id_pregunta" => $this->getId_pregunta(),
             "pregunta_texto" => $this->getId_cuestionario(),
-            "pregunta_texto" => $this->getPregunta_texto()
+            "pregunta_texto" => $this->getPregunta_texto(),
+            "posibles_respuestas" => array_map(function (PosibleRespuestaEntry $arr) {
+                        return $arr->Json();
+                    }, $this->getPosibles_respuestas())
         ];
         return $structure;
     }

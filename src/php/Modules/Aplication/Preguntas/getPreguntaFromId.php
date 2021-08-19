@@ -7,7 +7,7 @@ use Bulk\Modules\Core\Database\QueryFactory;
 use Bulk\Modules\Aplication\Preguntas\PreguntaEntry;
 use Bulk\Modules\Aplication\Preguntas\PosibleRespuestaEntry;
 
-trait getPreguntasFromCuestionario {
+trait getPreguntaFromId {
 
     /**
      * 
@@ -19,13 +19,14 @@ trait getPreguntasFromCuestionario {
     /**
      * 
      * @param int $id_cuestionario
-     * @return array
+     * @param int $id_pregunta
+     * @return PreguntaEntry
      */
-    public static function getPreguntasFromCuestionario(int $id_cuestionario): array {
+    public static function getPreguntaFromId(int $id_cuestionario, int $id_pregunta): PreguntaEntry {
         $db = Database::instance();
 
         $table_name = "preguntas";
-        $where = "id_cuestionario = :id_cuestionario";
+        $where = "id_cuestionario = :id_cuestionario AND id_pregunta = :id_pregunta";
         $statement = QueryFactory::prepare_select(
                         [
                             "id_pregunta",
@@ -34,22 +35,18 @@ trait getPreguntasFromCuestionario {
                             "create_at"
                         ], $table_name, $where);
 
-        $prepare = $db->prepare_fetch_all_class(PreguntaEntry::class, $statement, [
-            "id_cuestionario" => $id_cuestionario
+        $pregunta = $db->prepare_fetch_class(PreguntaEntry::class, $statement, [
+            "id_cuestionario" => $id_cuestionario,
+            "id_pregunta" => $id_pregunta
         ]);
 
-        if ($prepare) {
-            $data = array_map(function (PreguntaEntry $arr) {
-                $id_pregunta = $arr->getId_pregunta();
+        if ($pregunta) {
+            $respuestas_validas = self::getPosbilesRespuestasFromPreguntaId($id_pregunta);
+            $pregunta->setPosibles_respuestas($respuestas_validas);
 
-                $respuestas_validas = self::getPosbilesRespuestasFromPreguntaId($id_pregunta);
-                $arr->setPosibles_respuestas($respuestas_validas);
-
-                return $arr;
-            }, $prepare);
-            return ($data ?: []);
+            return $pregunta;
         }
-        return [];
+        return new PreguntaEntry();
     }
 
 }

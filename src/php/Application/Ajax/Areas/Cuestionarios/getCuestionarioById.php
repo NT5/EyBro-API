@@ -5,7 +5,7 @@ namespace Bulk\Application\Ajax\Areas\Cuestionarios;
 use Bulk\Application\Ajax\Area;
 use Bulk\Modules\Aplication\Cuestionarios;
 
-class getCuestionarioById extends Area {
+final class getCuestionarioById extends Area {
 
     /**
      *

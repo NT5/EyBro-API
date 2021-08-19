@@ -3,9 +3,8 @@
 namespace Bulk\Application\Ajax\Areas;
 
 use Bulk\Application\Ajax\Area;
-use Bulk\Modules\Core\Logger;
 
-class Invalid extends Area {
+final class Invalid extends Area {
 
     public function initVars() {
         $this->setVars([

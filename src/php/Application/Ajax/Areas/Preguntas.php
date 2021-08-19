@@ -4,7 +4,7 @@ namespace Bulk\Application\Ajax\Areas;
 
 use Bulk\Application\Ajax\Area;
 
-class Preguntas extends Area {
+final class Preguntas extends Area {
 
     public function CheckPost() {
         

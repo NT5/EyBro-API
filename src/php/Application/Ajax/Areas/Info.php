@@ -5,7 +5,7 @@ namespace Bulk\Application\Ajax\Areas;
 use Bulk\Application\Ajax\Area;
 use Bulk\Modules\Core\Database;
 
-class Info extends Area {
+final class Info extends Area {
 
     public function CheckPost() {
         

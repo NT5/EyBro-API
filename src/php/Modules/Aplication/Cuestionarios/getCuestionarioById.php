@@ -10,6 +10,13 @@ trait getCuestionarioById {
 
     /**
      * 
+     * @param int $id_cuestionario
+     * @return array
+     */
+    public static abstract function getCuestionarioPreguntasId(int $id_cuestionario): array;
+
+    /**
+     * 
      * @param int $cuestionario_id
      * @return CuestionarioEntry
      */
@@ -28,11 +35,16 @@ trait getCuestionarioById {
                         ],
                         $table_name, $where);
 
-        $prepare = $db->prepare_fetch_class(CuestionarioEntry::class, $sql, [
+        $cuestionario = $db->prepare_fetch_class(CuestionarioEntry::class, $sql, [
             "id_cuestionario" => $cuestionario_id
         ]);
 
-        return ($prepare ?: new CuestionarioEntry());
+        if ($cuestionario) {
+            $id_preguntas = self::getCuestionarioPreguntasId($cuestionario_id);
+            $cuestionario->setPreguntas_ids($id_preguntas);
+            return $cuestionario;
+        }
+        return new CuestionarioEntry();
     }
 
 }

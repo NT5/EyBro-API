@@ -4,7 +4,8 @@ namespace Bulk\Modules\Aplication;
 
 use Bulk\Modules\Aplication\Cuestionarios;
 
-class Cuestionarios extends BaseModule {
+final class Cuestionarios extends BaseModule {
 
-    use Cuestionarios\getCuestionarioById;
+    use Cuestionarios\getCuestionarioById,
+        Cuestionarios\getCuestionarioPreguntasId;
 }
