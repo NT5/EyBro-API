@@ -22,7 +22,7 @@ final class getCuestionarioById extends Area {
 
         $cuestionario = Cuestionarios::getCuestionarioById($cuestionario_id);
         $this->setVars([
-            'data' => $cuestionario->Json()
+            'cuestionario' => $cuestionario->Json()
         ]);
     }
 
