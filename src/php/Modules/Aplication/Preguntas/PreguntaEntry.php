@@ -37,6 +37,12 @@ class PreguntaEntry {
     private $posibles_respuestas = [];
 
     /**
+     *
+     * @var string
+     */
+    private $mensaje = false;
+
+    /**
      * 
      * @return int
      */
@@ -78,11 +84,24 @@ class PreguntaEntry {
 
     /**
      * 
+     * @return string
+     */
+    public function getMensaje() {
+        return $this->mensaje;
+    }
+
+    /**
+     * 
      * @param array $posibles_respuestas
      * @return $this
      */
     public function setPosibles_respuestas(array $posibles_respuestas) {
         $this->posibles_respuestas = $posibles_respuestas;
+        return $this;
+    }
+
+    public function setMensaje($mensaje) {
+        $this->mensaje = $mensaje;
         return $this;
     }
 
@@ -92,9 +111,13 @@ class PreguntaEntry {
             "id_pregunta" => $this->getId_pregunta(),
             "pregunta_texto" => $this->getId_cuestionario(),
             "pregunta_texto" => $this->getPregunta_texto(),
-            "posibles_respuestas" => array_map(function (PosibleRespuestaEntry $arr) {
+            "posibles_respuestas" => array_map(
+                    function (PosibleRespuestaEntry $arr) {
                         return $arr->Json();
-                    }, $this->getPosibles_respuestas())
+                    },
+                    $this->getPosibles_respuestas()
+            ),
+            "mensaje" => $this->getMensaje()
         ];
         return $structure;
     }

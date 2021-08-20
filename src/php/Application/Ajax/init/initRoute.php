@@ -25,10 +25,11 @@ trait initRoute {
 
         $Preguntas
                 ->addRoute(new AjaxRoute('getPreguntasFromCuestionario', Areas\Preguntas\getPreguntasFromCuestionario::class))
-                ->addRoute(new AjaxRoute('getPreguntaFromId', Areas\Preguntas\getPreguntaFromId::class));
+                ->addRoute(new AjaxRoute('getPreguntaFromId', Areas\Preguntas\getPreguntaFromId::class))
+                ->addRoute(new AjaxRoute('registreNuevaRespuesta', Areas\Preguntas\registreNuevaRespuesta::class));
 
         $Visitante = new AjaxRoute('visitante', Areas\Visitante::class);
-        
+
         $Visitante
                 ->addRoute(new AjaxRoute('registreVisitante', Areas\Visitante\registreVisitante::class));
 

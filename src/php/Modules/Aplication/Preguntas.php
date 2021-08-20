@@ -8,5 +8,7 @@ final class Preguntas extends BaseModule {
 
     use Preguntas\getPreguntasFromCuestionario,
         Preguntas\getPosbilesRespuestasFromPreguntaId,
-        Preguntas\getPreguntaFromId;
+        Preguntas\getPreguntaFromId,
+        Preguntas\getPreguntaMensajeFromId,
+        Preguntas\registreNuevaRespuesta;
 }

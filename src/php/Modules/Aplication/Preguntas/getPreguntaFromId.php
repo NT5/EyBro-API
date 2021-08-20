@@ -20,6 +20,14 @@ trait getPreguntaFromId {
      * 
      * @param int $id_cuestionario
      * @param int $id_pregunta
+     * @return string
+     */
+    public static abstract function getPreguntaMensajeFromId(int $id_cuestionario, int $id_pregunta);
+
+    /**
+     * 
+     * @param int $id_cuestionario
+     * @param int $id_pregunta
      * @return PreguntaEntry
      */
     public static function getPreguntaFromId(int $id_cuestionario, int $id_pregunta): PreguntaEntry {
@@ -43,6 +51,9 @@ trait getPreguntaFromId {
         if ($pregunta) {
             $respuestas_validas = self::getPosbilesRespuestasFromPreguntaId($id_pregunta);
             $pregunta->setPosibles_respuestas($respuestas_validas);
+
+            $mensaje_pregunta = self::getPreguntaMensajeFromId($id_cuestionario, $id_pregunta);
+            $pregunta->setMensaje($mensaje_pregunta);
 
             return $pregunta;
         }
