@@ -74,7 +74,7 @@ INSERT INTO `preguntas` (`id_cuestionario`, `id_pregunta`, `pregunta_texto`) VAL
 (1, 6, '¿Quién es la persona de tu familia que menos te quiere?'),
 (1, 7, '¿Tus compañeros te llaman por tu nombre o como te nombran cuando se refieren a vos?'),
 (1, 8, '¿Cómo te sientes cuando te llaman así?'),
-(1, 9, '¿Tus compañeros te quitan tus alimentos, te dan goles, te ofenden o te dicen que sos feo o que no sirves para nada?'),
+(1, 9, '¿Tus compañeros te quitan tus alimentos, te dan golpes, te ofenden o te dicen que sos feo o que no sirves para nada?'),
 (1, 10, '¿Cómo te sientes al ir a tu escuela?'),
 (1, 11, '¿Cómo te gustaría que te trataran tus compañeros de clase?'),
 (1, 12, '¿Con que frecuencia te hacen lo que refleja la pregunta número tres?'),
