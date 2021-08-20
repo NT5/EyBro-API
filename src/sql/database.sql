@@ -27,9 +27,27 @@ CREATE TABLE IF NOT EXISTS `posibles_respuestas` (
     CONSTRAINT FOREIGN KEY (`id_pregunta`) REFERENCES `preguntas` (`id_pregunta`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `visitantes` (
+    `id_visitante` BIGINT NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(250) NOT NULL,
+    `ip` INT UNSIGNED NOT NULL,
+    `agent` VARCHAR(200) NOT NULL,
+    `create_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `identificador` JSON NOT NULL,
+    PRIMARY KEY (`id_visitante`)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS `respuestas` (
-    `id_respuesta` BIGINT NOT NULL,
-    `id_pregunta` BIGINT NOT NULL
+    `id_respuesta` BIGINT NOT NULL AUTO_INCREMENT,
+    `id_visitante` BIGINT NOT NULL,
+    `id_cuestionario` BIGINT NOT NULL,
+    `id_pregunta` BIGINT NOT NULL,
+    `id_respuesta_enviada` BIGINT NOT NULL,
+    PRIMARY KEY (`id_respuesta`),
+    CONSTRAINT FOREIGN KEY (`id_visitante`) REFERENCES `visitantes` (`id_visitante`) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (`id_cuestionario`) REFERENCES `cuestionarios` (`id_cuestionario`) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (`id_pregunta`) REFERENCES `preguntas` (`id_pregunta`) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (`id_respuesta_enviada`) REFERENCES `posibles_respuestas` (`id_respuesta`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `mensajes_preguntas` (
