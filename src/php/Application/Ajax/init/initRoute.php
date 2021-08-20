@@ -22,16 +22,22 @@ trait initRoute {
                 ->addRoute(new AjaxRoute('getCuestionarioById', Areas\Cuestionarios\getCuestionarioById::class));
 
         $Preguntas = new AjaxRoute('preguntas', Areas\Preguntas::class);
-        
+
         $Preguntas
                 ->addRoute(new AjaxRoute('getPreguntasFromCuestionario', Areas\Preguntas\getPreguntasFromCuestionario::class))
                 ->addRoute(new AjaxRoute('getPreguntaFromId', Areas\Preguntas\getPreguntaFromId::class));
+
+        $Visitante = new AjaxRoute('visitante', Areas\Visitante::class);
+        
+        $Visitante
+                ->addRoute(new AjaxRoute('registreVisitante', Areas\Visitante\registreVisitante::class));
 
         $Route
                 ->addRoute(new AjaxRoute('invalid', Areas\Invalid::class))
                 ->addRoute(new AjaxRoute('info', Areas\Info::class))
                 ->addRoute($Cuestionarios)
-                ->addRoute($Preguntas);
+                ->addRoute($Preguntas)
+                ->addRoute($Visitante);
 
         $this->Route = $Route->init();
     }
