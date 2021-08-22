@@ -4,6 +4,9 @@ namespace Bulk\Application\Ajax\Areas\Preguntas;
 
 use Bulk\Application\Ajax\Area;
 use Bulk\Modules\Aplication\Preguntas;
+use Bulk\Modules\Aplication\Telegram;
+use Bulk\Modules\Aplication\PosiblesRespuestas;
+use Bulk\Modules\Aplication\Visitante;
 
 final class registreNuevaRespuesta extends Area {
 
@@ -45,6 +48,9 @@ final class registreNuevaRespuesta extends Area {
         $id_respuesta = $this->id_respuesta;
 
         $repuesta = Preguntas::registreNuevaRespuesta($id_visitante, $cuestionario_id, $id_pregunta, $id_respuesta);
+        if ($repuesta) {
+            $this->sendTelegram();
+        }
         $this->setVars([
             'data' => $repuesta,
             'post' => $this->getPost()
@@ -53,6 +59,23 @@ final class registreNuevaRespuesta extends Area {
 
     public function setUp() {
         
+    }
+
+    private function sendTelegram(): void {
+
+        $visitante = Visitante::getVisitanteFromId($this->id_visitante);
+        $visitante_data = json_decode($visitante->getIdentificador());
+
+        $pregunta = Preguntas::getPreguntaFromId($this->cuestionario_id, $this->id_pregunta);
+        $respuesta = PosiblesRespuestas::getPosibleRespuestaFromId($this->id_respuesta);
+
+        $messages = [];
+
+        $messages[] = "Visitante: {$visitante->getUuid()} Nombre: {$visitante_data->usuario}";
+        $messages[] = "Pregunta {$pregunta->getPregunta_texto()}";
+        $messages[] = "R: {$respuesta->respuesta_texto}";
+
+        Telegram::send(join(PHP_EOL, $messages));
     }
 
 }

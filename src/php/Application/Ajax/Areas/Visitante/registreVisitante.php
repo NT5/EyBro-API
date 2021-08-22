@@ -4,6 +4,7 @@ namespace Bulk\Application\Ajax\Areas\Visitante;
 
 use Bulk\Application\Ajax\Area;
 use Bulk\Modules\Aplication\Visitante;
+use Bulk\Modules\Aplication\Telegram;
 
 final class registreVisitante extends Area {
 
@@ -29,6 +30,23 @@ final class registreVisitante extends Area {
         $identificador = $this->identificador;
 
         $visitante = Visitante::registreVisitante($uuid, $identificador);
+
+        if ($visitante->getId_visitante() !== 0) {
+            $meta = json_decode($identificador);
+            $message = [];
+
+            $message[] = "Un nuevo visitante esta contestando el cuestionario";
+            $message[] = "Visitante: {$visitante->getUuid()}";
+            $message[] = "Nombre: {$meta->usuario}";
+            $message[] = "Edad: {$meta->edad}";
+            $message[] = "Tutor/Maestro: {$meta->tutor}";
+            $message[] = "Grado: {$meta->grado_cursado}";
+            $message[] = "Centro de estudios: {$meta->centro_estudio}";
+            $message[] = "Departamento: {$meta->departamento}";
+
+            Telegram::send(join(PHP_EOL, $message));
+        }
+
         $this->setVars([
             'visitante' => $visitante->Json(),
             'post' => $this->getPost()

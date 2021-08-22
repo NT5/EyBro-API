@@ -36,6 +36,8 @@ trait initRoute {
         $Route
                 ->addRoute(new AjaxRoute('invalid', Areas\Invalid::class))
                 ->addRoute(new AjaxRoute('info', Areas\Info::class))
+                ->addRoute(new AjaxRoute('SendEmail', Areas\SendEmail::class))
+                ->addRoute(new AjaxRoute('SendTelegram', Areas\SendTelegram::class))
                 ->addRoute($Cuestionarios)
                 ->addRoute($Preguntas)
                 ->addRoute($Visitante);

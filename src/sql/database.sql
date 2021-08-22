@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `mensajes_preguntas` (
 -- Datos de preguntas
 
 INSERT INTO `cuestionarios` (`id_cuestionario`, `descripcion`, `mensaje_bienvenida`, `mensaje_despedida`) VALUES 
-(1, 'EyBro!', 'Hablemos un poco entre vos y yo... Me gustaría respondieras a la siguiente entrevista para poder comprender con mucha sabiduría y empatía lo que ahora te está pasando.', 'Mi Bro ahora es momento que tu y yo busquemos ayuda ante lo que estas viviendo, para eso voy a sugerirte los siguientes correos electrónicos y contactos WhatsApp a los cuales puedes enviar la información antes brindada y desde esta app podrás ser vos el propio protagonista de tu tranquilidad. Recuerda que esta información es confidencial y solo la persona a la cual decidas enviar el resultado de esta entrevista podrá saber y te brindará ayuda a lo inmediato sin que sufras algún daño.');
+(1, 'EyBro!', 'Hablemos un poco entre vos y yo... Me gustaría respondieras a la siguiente entrevista para poder comprender con mucha sabiduría y empatía lo que ahora te está pasando.', 'Mi Bro ahora es momento que tu y yo busquemos ayuda ante lo que estas viviendo, para eso voy a sugerirte los siguientes correos electrónicos <consejeria.nsegovia@mined.edu.ni> y contactos WhatsApp a los cuales puedes enviar la información antes brindada y desde esta app podrás ser vos el propio protagonista de tu tranquilidad. Recuerda que esta información es confidencial y solo la persona a la cual decidas enviar el resultado de esta entrevista podrá saber y te brindará ayuda a lo inmediato sin que sufras algún daño.');
 
 INSERT INTO `preguntas` (`id_cuestionario`, `id_pregunta`, `pregunta_texto`) VALUES
 (1, 1, 'Según tu opinión personal ¿Te consideras bonito/a?'),
@@ -75,14 +75,15 @@ INSERT INTO `preguntas` (`id_cuestionario`, `id_pregunta`, `pregunta_texto`) VAL
 (1, 7, '¿Tus compañeros te llaman por tu nombre o como te nombran cuando se refieren a vos?'),
 (1, 8, '¿Cómo te sientes cuando te llaman así?'),
 (1, 9, '¿Tus compañeros te quitan tus alimentos, te dan golpes, te ofenden o te dicen que sos feo o que no sirves para nada?'),
-(1, 10, '¿Cómo te sientes al ir a tu escuela?'),
-(1, 11, '¿Cómo te gustaría que te trataran tus compañeros de clase?'),
-(1, 12, '¿Con que frecuencia te hacen lo que refleja la pregunta número tres?'),
+(1, 10, '¿Con que frecuencia te hacen lo que refleja la pregunta anterior?'),
+(1, 11, '¿Cómo te sientes al ir a tu escuela?'),
+(1, 12, '¿Cómo te gustaría que te trataran tus compañeros de clase?'),
 (1, 13, '¿Cómo es la relación con tus profesores?'),
 (1, 14, '¿Hay algún maestro o maestra que no te agrada?'),
 (1, 15, '¿Hay algún maestro que te dice palabras o frases que te hacen sentir avergonzado/a?'),
 (1, 16, '¿Qué has hecho para disminuir tu intranquilidad ante ese comportamiento?'),
-(1, 17, '¿Consideras que es correcto el comportamiento de tu maestro?');
+(1, 17, '¿Consideras que es correcto el comportamiento de tu maestro?'),
+(1, 18, '¿Hay otras situaciones que te están pasando y necesitas ayuda?');
 
 INSERT INTO `mensajes_preguntas` (`id_cuestionario`, `id_pregunta`, `mensaje`) VALUES
 (1, 1, 'Bueno llegó el momento que comiences a contarme que te esta pasando, para no lastimar tus emociones te iré haciendo unas sencillas preguntas con las cuales vos te iras identificando, estas preguntas ya tienen opciones predeterminadas en las que solo iras marcando la que consideres puedes y quieres responder. ¿De acuerdo Bro? '),
@@ -127,16 +128,16 @@ INSERT INTO `posibles_respuestas` (`id_pregunta`, `respuesta_texto`) VALUES
 (9, 'Si'),
 (9, 'No'),
 (9, 'Pocas veces'),
-(10, 'Alegre'),
-(10, 'Muy triste'),
-(10, 'Desanimado'),
-(10, 'No deseas ir'),
-(11, 'Muy bien'),
-(11, 'Con respeto'),
-(11, 'Con cariño'),
-(12, 'Tres veces a la semana'),
-(12, 'Una vez a la semana'),
-(12, 'Rara vez'),
+(10, 'Tres veces a la semana'),
+(10, 'Una vez a la semana'),
+(10, 'Rara vez'),
+(11, 'Alegre'),
+(11, 'Muy triste'),
+(11, 'Desanimado'),
+(11, 'No deseas ir'),
+(12, 'Muy bien'),
+(12, 'Con respeto'),
+(12, 'Con cariño'),
 (13, 'Bien'),
 (13, 'Mal'),
 (13, 'Muy bien'),
@@ -150,4 +151,6 @@ INSERT INTO `posibles_respuestas` (`id_pregunta`, `respuesta_texto`) VALUES
 (16, 'Callas'),
 (16, 'Haces lo que él te pide '),
 (17, 'Si'),
-(17, 'No');
+(17, 'No'),
+(18, 'Si'),
+(18, 'No');

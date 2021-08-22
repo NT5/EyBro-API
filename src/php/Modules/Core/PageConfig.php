@@ -42,6 +42,59 @@ final class PageConfig {
     private static $enable_debug = true;
 
     /**
+     *
+     * @var string 
+     */
+    private static $mail_server = 'website.com';
+
+    /**
+     *
+     * @var int 
+     */
+    private static $mail_port = 25;
+
+    /**
+     *
+     * @var string 
+     */
+    private static $mail_user = 'example@website.com';
+
+    /**
+     *
+     * @var string 
+     */
+    private static $mail_password = 'password';
+
+    /**
+     *
+     * @var string 
+     */
+    private static $mail_name = 'bulk';
+
+    /**
+     *
+     * @var string 
+     */
+    private static $mail_send = 'example@website.com';
+
+    /**
+     *
+     * @var string
+     */
+    private static $telegram_api = 0;
+
+    /**
+     *
+     * @var string
+     */
+    private static $telegram_channel = 0;
+
+    /**
+     *
+     * @var string 
+     */
+
+    /**
      * Regresa instancia de configuración de la pagina web
      * @return \self
      */
@@ -105,6 +158,70 @@ final class PageConfig {
 
     /**
      * 
+     * @return string
+     */
+    public static function getMail_server(): string {
+        return self::$mail_server;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public static function getMail_port(): int {
+        return self::$mail_port;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public static function getMail_user(): string {
+        return self::$mail_user;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public static function getMail_password(): string {
+        return self::$mail_password;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public static function getMail_name(): string {
+        return self::$mail_name;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public static function getMail_send(): string {
+        return self::$mail_send;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public static function getTelegram_api(): string {
+        return self::$telegram_api;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public static function getTelegram_channel(): string {
+        return self::$telegram_channel;
+    }
+
+    /**
+     * 
      * @param string $title
      * @return \self
      */
@@ -140,6 +257,86 @@ final class PageConfig {
      */
     public static function setEnableDebug(bool $enable_debug): self {
         self::$enable_debug = $enable_debug;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $mail_server
+     * @return \self
+     */
+    public static function setMail_server(string $mail_server): self {
+        self::$mail_server = $mail_server;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param int $mail_port
+     * @return \self
+     */
+    public static function setMail_port(int $mail_port): self {
+        self::$mail_port = $mail_port;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $mail_user
+     * @return \self
+     */
+    public static function setMail_user(string $mail_user): self {
+        self::$mail_user = $mail_user;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $mail_password
+     * @return \self
+     */
+    public static function setMail_password(string $mail_password): self {
+        self::$mail_password = $mail_password;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $mail_name
+     * @return \self
+     */
+    public static function setMail_name(string $mail_name): self {
+        self::$mail_name = $mail_name;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $mail_send
+     * @return \self
+     */
+    public static function setMail_send(string $mail_send): self {
+        self::$mail_send = $mail_send;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $telegram_api
+     * @return \self
+     */
+    public static function setTelegram_api(string $telegram_api): self {
+        self::$telegram_api = $telegram_api;
+        return new static();
+    }
+
+    /**
+     * 
+     * @param string $telegram_channel
+     * @return \self
+     */
+    public static function setTelegram_channel(string $telegram_channel): self {
+        self::$telegram_channel = $telegram_channel;
         return new static();
     }
 

@@ -3,7 +3,8 @@
     "description": "Interface para App",
     "type": "project",
     "require": {
-        "php": ">=7"
+        "php": ">=7",
+        "phpmailer/phpmailer": "^6.5"
     },
     "license": "Apache-2.0",
     "autoload": {

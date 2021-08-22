@@ -16,6 +16,7 @@ final class Ajax {
     private $Route;
 
     use Initialization\initDatabase,
+        Initialization\initPageConfig,
         Finalization\disposeDatabase,
         Ajax\init\initRoute,
         Ajax\init\initDisplay;
@@ -30,6 +31,7 @@ final class Ajax {
         $this->ExecutionTime = microtime(true);
         $this->initDatabaseConfig();
         $this->initDatabaseInstance();
+        $this->initPageConfig();
         $this->initRoute();
         $this->initDisplay();
         $this->disconnectDatabase();

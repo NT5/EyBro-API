@@ -35,7 +35,7 @@ trait registreNuevaRespuesta {
             $id_respuesta
         ]);
 
-        return ($respuesta ? true : false);
+        return ($respuesta->rowCount() > 0 ? true : false);
     }
 
 }
