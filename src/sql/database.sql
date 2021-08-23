@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `mensajes_preguntas` (
 -- Datos de preguntas
 
 INSERT INTO `cuestionarios` (`id_cuestionario`, `descripcion`, `mensaje_bienvenida`, `mensaje_despedida`) VALUES 
-(1, 'EyBro!', 'Hablemos un poco entre vos y yo... Me gustaría respondieras a la siguiente entrevista para poder comprender con mucha sabiduría y empatía lo que ahora te está pasando.', 'Mi Bro ahora es momento que tu y yo busquemos ayuda ante lo que estas viviendo, para eso voy a sugerirte los siguientes correos electrónicos <consejeria.nsegovia@mined.edu.ni> y contactos WhatsApp a los cuales puedes enviar la información antes brindada y desde esta app podrás ser vos el propio protagonista de tu tranquilidad. Recuerda que esta información es confidencial y solo la persona a la cual decidas enviar el resultado de esta entrevista podrá saber y te brindará ayuda a lo inmediato sin que sufras algún daño.');
+(1, 'EyBro!', 'Hablemos un poco entre vos y yo... Me gustaría respondieras a la siguiente entrevista para poder comprender con mucha sabiduría y empatía lo que ahora te está pasando.', 'Excelente Bro. Has tomado la mejor decisión de tu vida y has permitido romper el silencio. Ahora mismo la información que nos has brindado por este medio se está estudiando y pronto te ofrecerán ayuda profesional y amigable.');
 
 INSERT INTO `preguntas` (`id_cuestionario`, `id_pregunta`, `pregunta_texto`) VALUES
 (1, 1, 'Según tu opinión personal ¿Te consideras bonito/a?'),
