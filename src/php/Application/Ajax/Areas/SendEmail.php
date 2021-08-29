@@ -24,6 +24,12 @@ final class SendEmail extends Area {
 
     /**
      *
+     * @var bool
+     */
+    private $sendTelegram = true;
+
+    /**
+     *
      * @var string
      */
     private $token = 0;
@@ -73,7 +79,9 @@ final class SendEmail extends Area {
         $emailText = $this->MessageText();
         $emailStatus = $correo->send("Respuesta de encuesta {$visitante->getUuid()}", $emailText);
 
-        $this->sendTelegram();
+        if ($this->sendTelegram) {
+            $this->sendTelegram();
+        }
 
         $this->setVars([
             'visitante.data' => $visitante->Json(),
@@ -87,9 +95,9 @@ final class SendEmail extends Area {
         Correo::init();
         Telegram::init();
 
-        $this->addText("<h1> ----- Correo Automatico no responder ----- </h1>");
-        $this->addText("<img src='https://eybrosoloentrevosyyo.mzdevocotal.com/img/banner.webp' alt='banner' width='500' height='600' />");
-        $this->addText('<h3>Datos abajo</h3>');
+        $this->addText("<h2> ----- Correo Automático no responder ----- </h2>");
+        // $this->addText("<img src='https://eybrosoloentrevosyyo.mzdevocotal.com/img/banner.webp' alt='banner' width='500' height='600' />");
+        // $this->addText('<h3>Datos abajo</h3>');
         $this->addText("<hr />");
     }
 

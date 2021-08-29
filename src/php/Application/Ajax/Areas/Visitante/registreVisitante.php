@@ -18,7 +18,13 @@ final class registreVisitante extends Area {
      *
      * @var string
      */
-    private $identificador = "0";
+    private $identificador = '{"foo": "bar"}';
+
+    /**
+     *
+     * @var boolean
+     */
+    private $sendTelegram = true;
 
     public function CheckPost() {
         $this->uuid = ($this->getPost('uuid') ?: "0");
@@ -31,20 +37,8 @@ final class registreVisitante extends Area {
 
         $visitante = Visitante::registreVisitante($uuid, $identificador);
 
-        if ($visitante->getId_visitante() !== 0) {
-            $meta = json_decode($identificador);
-            $message = [];
-
-            $message[] = "Un nuevo visitante esta contestando el cuestionario";
-            $message[] = "Visitante: {$visitante->getUuid()}";
-            $message[] = "Nombre: {$meta->usuario}";
-            $message[] = "Edad: {$meta->edad}";
-            $message[] = "Tutor/Maestro: {$meta->tutor}";
-            $message[] = "Grado: {$meta->grado_cursado}";
-            $message[] = "Centro de estudios: {$meta->centro_estudio}";
-            $message[] = "Departamento: {$meta->departamento}";
-
-            Telegram::send(join(PHP_EOL, $message));
+        if ($this->sendTelegram && $visitante->getId_visitante() !== 0) {
+            $this->sendTelegramMessage($visitante);
         }
 
         $this->setVars([
@@ -54,7 +48,28 @@ final class registreVisitante extends Area {
     }
 
     public function setUp() {
-        
+        Telegram::init();
+    }
+
+    /**
+     * 
+     * @param Visitante\VisitanteEntry $visitante
+     * @return void
+     */
+    private function sendTelegramMessage(Visitante\VisitanteEntry $visitante): void {
+        $meta = json_decode($visitante->getIdentificador());
+        $message = [];
+
+        $message[] = "Un nuevo visitante esta contestando el cuestionario";
+        $message[] = "Visitante: {$visitante->getUuid()}";
+        $message[] = "Nombre: {$meta->usuario}";
+        $message[] = "Edad: {$meta->edad}";
+        $message[] = "Tutor/Maestro: {$meta->tutor}";
+        $message[] = "Grado: {$meta->grado_cursado}";
+        $message[] = "Centro de estudios: {$meta->centro_estudio}";
+        $message[] = "Departamento: {$meta->departamento}";
+
+        Telegram::send(join(PHP_EOL, $message));
     }
 
 }
